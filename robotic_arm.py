@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 
 class Joint:
     def __init__(self, mass, center_of_mass, inertia, length, joint_type, axis):
-        self.M = mass
+        self.m = mass
         self.COM = center_of_mass
         self.I = inertia
         self.L = length
         if not (joint_type == 'r' or joint_type == 'p'):
             raise ValueError(
-            "Invalid joint type (choose 'r' for revolute or 'p' for 'prismatic'.")
+            "Invalid joint type ('r' for revolute or 'p' for 'prismatic'.")
         self.jt = joint_type
         if not(axis == 'x' or axis == 'y' or axis == 'z'):
             raise ValueError("Invalid axis (choose x, y, or z).")
@@ -39,7 +39,7 @@ class RoboticManip:
         self.joints = joints
         self.njoints = len(joints)
         self.X = np.array(3,self.njoints)
-        self.V = np.array(3,self.njoints)
+        self.V = np.zeros(3,self.njoints)
 
     def rotate_joint_i(self, q, i):
         self.joints[i].rotate(q)
